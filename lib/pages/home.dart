@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class OnBoardingPage extends StatelessWidget {
   const OnBoardingPage({super.key});
@@ -47,7 +48,7 @@ class OnBoardingPage extends StatelessWidget {
                   ),
                   SizedBox(height: 40),
                   FilledButton(
-                    onPressed: () {},
+                    onPressed: () => context.go('/discover'),
                     child: Container(
                       padding: EdgeInsets.all(2),
                       width: 150,

@@ -14,6 +14,9 @@ class MainApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routerConfig: routes,
       title: 'Travel App',
+      theme: ThemeData(
+        fontFamily: 'Merriweather'
+      ),
     );
   }
 }
