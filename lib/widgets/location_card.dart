@@ -11,7 +11,7 @@ class LocationCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-        context.go('/location');
+        context.push('/location', extra: location);
       },
       child: SizedBox(
         height: 250,
@@ -48,12 +48,14 @@ class LocationCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          location.name,
+                          '${location.name}',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 17,
                             fontWeight: FontWeight.w900,
                           ),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
                         ),
                         Container(
                           padding: EdgeInsets.all(5),

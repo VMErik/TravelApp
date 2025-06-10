@@ -12,54 +12,74 @@ class DiscoverPage extends StatelessWidget {
     'America',
   ];
 
+
+
   final List<Location> locations = [
     Location(
-      name: 'Zurich - Suiza',
+      name: 'Zurich',
+      location: 'Suiza',
       ranking: 4.5,
       imageUrl: 'assets/img/suiza-zurich.png',
+      price: 400
     ),
     Location(
-      name: 'Innsbruck - Austria',
+      name: 'Innsbruck',
+      location: 'Austria',
       ranking: 5,
       imageUrl: 'assets/img/austria-innsbruck.png',
+      price: 350.99
     ),
     Location(
-      name: 'Salzburgo - Austria',
+      name: 'Salzburgo',
+      location: 'Austria',
       ranking: 3.5,
       imageUrl: 'assets/img/austria-salzburgo.png',
+      price: 250
     ),
     Location(
-      name: 'Tallin - Estronia',
+      name: 'Tallin',
+      location: 'Estronia',
       ranking: 3,
       imageUrl: 'assets/img/estonia-tallin.png',
+      price: 699.50
     ),
     Location(
-      name: 'Chamonix - Francia',
+      name: 'Chamonix',
+      location: 'Francia',
       ranking: 2,
       imageUrl: 'assets/img/francia-chamonix.png',
+      price: 289
     ),
     Location(
-      name: 'Praga - Republica Checa',
+      name: 'Praga',
+      location: 'Republica Checa',
       ranking: 4,
       imageUrl: 'assets/img/rep-praga.png',
+      price: 590
     ),
   ];
 
-  final List<Location> locationsBanner = [
+final List<Location> locationsBanner = [
     Location(
-      name: 'Tallin - Estronia',
+      name: 'Salzburgo',
+      location: 'Austria',
+      ranking: 3.5,
+      imageUrl: 'assets/img/austria-salzburgo.png',
+      price: 250
+    ),
+    Location(
+      name: 'Tallin',
+      location: 'Estronia',
       ranking: 3,
       imageUrl: 'assets/img/estonia-tallin.png',
+      price: 699.50
     ),
     Location(
-      name: 'Chamonix - Francia',
-      ranking: 2,
-      imageUrl: 'assets/img/francia-chamonix.png',
-    ),
-    Location(
-      name: 'Praga - Republica Checa',
+      name: 'Praga',
+      location: 'Republica Checa',
       ranking: 4,
       imageUrl: 'assets/img/rep-praga.png',
+      price: 590
     ),
   ];
 

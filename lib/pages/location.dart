@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:travelapp/models/location.dart';
 
 class LocationPage extends StatelessWidget {
-  const LocationPage({super.key});
+
+  final Location location;
+
+  const LocationPage({super.key, required this.location});
 
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
-
     return Scaffold(
       body: Stack(
         clipBehavior: Clip.none,
@@ -16,7 +19,7 @@ class LocationPage extends StatelessWidget {
             height: height / 2,
             color: Colors.black,
             child: Image(
-              image: AssetImage('assets/img/rep-praga.png'),
+              image: AssetImage(location.imageUrl),
               fit: BoxFit.cover,
             ),
           ),
@@ -45,14 +48,14 @@ class LocationPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Mount Fuji',
+                        location.name,
                         style: TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.w900,
                         ),
                       ),
                       Text(
-                        'Honshu Japan',
+                        location.location,
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w900,
@@ -61,7 +64,7 @@ class LocationPage extends StatelessWidget {
                       Row(
                         children: [
                           ...List.generate(
-                            5, // Número total de estrellas posibles
+                            location.ranking.round(), // Número total de estrellas posibles
                             (index) => Icon(
                               index < 5 ? Icons.star : Icons.star_border,
                               color: Colors.yellow[700],
@@ -70,7 +73,7 @@ class LocationPage extends StatelessWidget {
                           ),
                           SizedBox(width: 10),
                           Text(
-                            '5.0',
+                            location.ranking.toString(),
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w900,
@@ -137,29 +140,24 @@ class LocationPage extends StatelessWidget {
                       ),
                       SizedBox(height: 20),
                       Text(
-                        'It is a long established fact that a reader will '
-                        'be distracted by the readable content of a page when '
-                        'looking at its layout. The point of using Lorem Ipsum '
-                        'is that it has a more-or-less normal distribution of letters, '
-                        'as opposed to using Content here, content here, making '
-                        'it look like readable English.',
+                        location.description,
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.w700,
                           letterSpacing: 1,
                         ),
                       ),
-                      SizedBox(height: 50,),
+                      SizedBox(height: 40,),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('\$400', style: TextStyle(
+                          Text('\$${location.price}', style: TextStyle(
                             fontSize: 35,
                             fontWeight: FontWeight.bold,
                             color: Color(0XFF6A62B7)
                           ),),
                           Text('/ Package', style: TextStyle(
-                            fontSize: 18,
+                            fontSize: 14,
                             fontWeight: FontWeight.bold,
                             color: Color(0XFF6A62B7)
                           ),),
@@ -169,7 +167,7 @@ class LocationPage extends StatelessWidget {
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text('Book Now', style: TextStyle(
-                                fontSize: 18,
+                                fontSize: 16,
                                 fontWeight: FontWeight.bold
                               ),),
                             ),
