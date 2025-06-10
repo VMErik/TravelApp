@@ -79,7 +79,6 @@ class DiscoverPage extends StatelessWidget {
         actions: [
           CircleAvatar(
             radius: 30,
-
             backgroundImage: AssetImage('assets/img/avatar.jpg'),
           ),
         ],
@@ -89,7 +88,7 @@ class DiscoverPage extends StatelessWidget {
           padding: const EdgeInsets.all(20),
           child: Column(
             children: [
-              // Labels
+              // Cateogry Labels
               SizedBox(
                 height: 50,
                 child: ListView.builder(
@@ -128,6 +127,7 @@ class DiscoverPage extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 20),
+              // Section
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -139,6 +139,7 @@ class DiscoverPage extends StatelessWidget {
                 ],
               ),
               SizedBox(height: 20),
+              // Cards
               LayoutBuilder(
                 builder: (context, constraints) {
                   int crossAxisCount = 2;
