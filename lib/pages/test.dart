@@ -1,70 +1,145 @@
 import 'package:flutter/material.dart';
+import 'package:travelapp/models/location.dart';
+import 'package:travelapp/widgets/category_labels.dart';
+import 'package:travelapp/widgets/location_card.dart';
 
 class TestPage extends StatelessWidget {
-  const TestPage({super.key});
+  TestPage({super.key});
+
+  final List<Location> locations = [
+    Location(
+      name: 'Zurich',
+      location: 'Suiza',
+      ranking: 4.5,
+      imageUrl: 'assets/img/suiza-zurich.png',
+      price: 400,
+    ),
+    Location(
+      name: 'Innsbruck',
+      location: 'Austria',
+      ranking: 5,
+      imageUrl: 'assets/img/austria-innsbruck.png',
+      price: 350.99,
+    ),
+    Location(
+      name: 'Salzburgo',
+      location: 'Austria',
+      ranking: 3.5,
+      imageUrl: 'assets/img/austria-salzburgo.png',
+      price: 250,
+    ),
+    Location(
+      name: 'Tallin',
+      location: 'Estronia',
+      ranking: 3,
+      imageUrl: 'assets/img/estonia-tallin.png',
+      price: 699.50,
+    ),
+    Location(
+      name: 'Chamonix',
+      location: 'Francia',
+      ranking: 2,
+      imageUrl: 'assets/img/francia-chamonix.png',
+      price: 289,
+    ),
+    Location(
+      name: 'Praga',
+      location: 'Republica Checa',
+      ranking: 4,
+      imageUrl: 'assets/img/rep-praga.png',
+      price: 590,
+    ),
+  ];
+
+  final List<Location> locationsBanner = [
+    Location(
+      name: 'Salzburgo',
+      location: 'Austria',
+      ranking: 3.5,
+      imageUrl: 'assets/img/austria-salzburgo.png',
+      price: 250,
+    ),
+    Location(
+      name: 'Tallin',
+      location: 'Estronia',
+      ranking: 3,
+      imageUrl: 'assets/img/estonia-tallin.png',
+      price: 699.50,
+    ),
+    Location(
+      name: 'Praga',
+      location: 'Republica Checa',
+      ranking: 4,
+      imageUrl: 'assets/img/rep-praga.png',
+      price: 590,
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
     final media = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Color(0XFFE9E9E9),
+      appBar: AppBar(
+        leading: Icon(Icons.menu),
+        title: Center(child: Text('Discover')),
+        actions: [
+          CircleAvatar(
+            radius: 30,
+            backgroundImage: AssetImage('assets/img/avatar.jpg'),
+          ),
+        ],
+      ),
       body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(30),
-                bottomRight: Radius.circular(30),
-
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            children: [
+              CategoryLabels(),
+              SizedBox(
+                height: 250,
+                child: PageView.builder(
+                  itemCount: locationsBanner.length,
+                  controller: PageController(viewportFraction: 0.90),
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      child: LocationCard(location: locationsBanner[index]),
+                    );
+                  },
+                ),
               ),
-              child: Image(
-                width: double.infinity,
-                height: media.height / 2,
-                image: AssetImage('assets/img/snow.jpg'),
-                fit: BoxFit.cover,
-              ),
-            ),
-            SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Winter',
-                    style: TextStyle(fontSize: 42, fontWeight: FontWeight.bold),
+                    'Recommended',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w900),
                   ),
-                  Text(
-                    'Vacation Trips',
-                    style: TextStyle(fontSize: 42, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(height: 20),
-                  Text(
-                    'Enjoy your winter vacations with warmth'
-                    'and amazing sightseeing on the mountains.'
-                    'Enjoy the best experience with us!',
-                    style: TextStyle(fontSize: 20, color: Colors.black54),
-                  ),
-                  SizedBox(height: 40),
-                  FilledButton(
-                    onPressed: () {},
-                    child: Container(
-                      padding: EdgeInsets.all(2),
-                      width: 150,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('Lets Go', style: TextStyle(fontSize: 20)),
-                          Icon(Icons.arrow_right_alt, size: 40),
-                        ],
-                      ),
-                    ),
-                  ),
+                  Text('View All', style: TextStyle(fontSize: 16)),
                 ],
               ),
-            ),
-          ],
+              SizedBox(height: 20),
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  return GridView.builder(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 10,
+                    ),
+                    itemCount: locations.length,
+                    itemBuilder: (context, index) {
+                      Location location = locations[index];
+                      return LocationCard(location: location);
+                    },
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
